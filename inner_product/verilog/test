@@ -1,0 +1,29 @@
+#! /usr/local/Cellar/icarus-verilog/0.9.7/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x7fbcc95013c0 .scope module, "inner_product" "inner_product" 2 1;
+ .timescale 0 0;
+P_0x7fbcc95004f8 .param/l "DW" 2 4, +C4<01000>;
+P_0x7fbcc9500520 .param/l "N" 2 3, +C4<0100>;
+L_0x7fbcc9511b60 .functor BUFZ 8, C4<zzzzzzzz>, C4<00000000>, C4<00000000>, C4<00000000>;
+v0x7fbcc95014f0_0 .net *"_s2", 7 0, L_0x7fbcc9511890; 1 drivers
+v0x7fbcc9511570_0 .net *"_s4", 7 0, L_0x7fbcc9511960; 1 drivers
+v0x7fbcc9511600_0 .net "inp1", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v0x7fbcc9511680_0 .net "inp2", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v0x7fbcc9511710_0 .net "outp", 7 0, L_0x7fbcc9511b60; 1 drivers
+v0x7fbcc95117d0 .array "sums", 3 0;
+v0x7fbcc95117d0_0 .net v0x7fbcc95117d0 0, 7 0, L_0x7fbcc9511a30; 1 drivers
+v0x7fbcc95117d0_1 .net v0x7fbcc95117d0 1, 7 0, C4<zzzzzzzz>; 0 drivers
+v0x7fbcc95117d0_2 .net v0x7fbcc95117d0 2, 7 0, C4<zzzzzzzz>; 0 drivers
+v0x7fbcc95117d0_3 .net v0x7fbcc95117d0 3, 7 0, C4<zzzzzzzz>; 0 drivers
+L_0x7fbcc9511890 .part C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>, 0, 8;
+L_0x7fbcc9511960 .part C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>, 0, 8;
+L_0x7fbcc9511a30 .arith/mult 8, L_0x7fbcc9511890, L_0x7fbcc9511960;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "inner_product.v";

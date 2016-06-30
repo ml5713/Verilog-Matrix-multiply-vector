@@ -1,0 +1,98 @@
+#! /usr/local/Cellar/icarus-verilog/0.9.7/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x7fc9b86012e0 .scope module, "inner_product_tb" "inner_product_tb" 2 7;
+ .timescale -12 -12;
+P_0x7fc9b86013c8 .param/l "TB_CLK_PERIOD" 2 12, +C4<011111010000>;
+P_0x7fc9b86013f0 .param/l "TB_RST_PERIOD" 2 13, +C4<0111110100000>;
+P_0x7fc9b8601418 .param/l "TB_TIMEOUT" 2 11, +C4<011000011010100000>;
+v0x7fc9b840b930_0 .net "inps", 3 0, L_0x7fc9b840bb30; 1 drivers
+v0x7fc9b840b9d0_0 .net "outp", 1 0, L_0x7fc9b840c200; 1 drivers
+v0x7fc9b840ba90_0 .var "tb_clk", 0 0;
+S_0x7fc9b8602a10 .scope module, "my_inner_product_test" "inner_product_test" 2 29, 3 1, S_0x7fc9b86012e0;
+ .timescale 0 0;
+P_0x7fc9b8602af8 .param/l "data_width" 3 4, +C4<010>;
+P_0x7fc9b8602b20 .param/l "num_bits" 3 12, +C4<0100>;
+P_0x7fc9b8602b48 .param/l "num_elems" 3 3, +C4<010>;
+L_0x7fc9b840bb30 .functor BUFZ 4, v0x7fc9b840b770_0, C4<0000>, C4<0000>, C4<0000>;
+v0x7fc9b840b6d0_0 .net "clk", 0 0, v0x7fc9b840ba90_0; 1 drivers
+v0x7fc9b840b770_0 .var "count", 3 0;
+v0x7fc9b840b830_0 .alias "outp", 1 0, v0x7fc9b840b9d0_0;
+v0x7fc9b840b8b0_0 .alias "outp_inps", 3 0, v0x7fc9b840b930_0;
+E_0x7fc9b8601530 .event posedge, v0x7fc9b840b6d0_0;
+S_0x7fc9b8603e30 .scope module, "my_inner_product" "inner_product" 3 28, 4 1, S_0x7fc9b8602a10;
+ .timescale 0 0;
+P_0x7fc9b8603f18 .param/l "DW" 4 4, +C4<010>;
+P_0x7fc9b8603f40 .param/l "N" 4 3, +C4<010>;
+L_0x7fc9b840c200 .functor BUFZ 2, L_0x7fc9b840bea0, C4<00>, C4<00>, C4<00>;
+v0x7fc9b840b330_0 .net *"_s4", 1 0, L_0x7fc9b840bf90; 1 drivers
+v0x7fc9b840b3d0_0 .net *"_s6", 1 0, L_0x7fc9b840c020; 1 drivers
+v0x7fc9b840b460_0 .net "inp1", 3 0, v0x7fc9b840b770_0; 1 drivers
+v0x7fc9b840b500_0 .alias "inp2", 3 0, v0x7fc9b840b460_0;
+v0x7fc9b840b580_0 .alias "outp", 1 0, v0x7fc9b840b9d0_0;
+v0x7fc9b840b630 .array "sums", 1 0;
+v0x7fc9b840b630_0 .net v0x7fc9b840b630 0, 1 0, L_0x7fc9b840c0b0; 1 drivers
+v0x7fc9b840b630_1 .net v0x7fc9b840b630 1, 1 0, L_0x7fc9b840bea0; 1 drivers
+L_0x7fc9b840bbd0 .part v0x7fc9b840b770_0, 2, 2;
+L_0x7fc9b840bce0 .part v0x7fc9b840b770_0, 2, 2;
+L_0x7fc9b840bf90 .part v0x7fc9b840b770_0, 0, 2;
+L_0x7fc9b840c020 .part v0x7fc9b840b770_0, 0, 2;
+L_0x7fc9b840c0b0 .arith/mult 2, L_0x7fc9b840bf90, L_0x7fc9b840c020;
+S_0x7fc9b8604010 .scope generate, "sum_loop[1]" "sum_loop[1]" 4 20, 4 20, S_0x7fc9b8603e30;
+ .timescale 0 0;
+P_0x7fc9b86040f8 .param/l "i" 4 20, +C4<01>;
+v0x7fc9b8604170_0 .net *"_s2", 1 0, L_0x7fc9b840bbd0; 1 drivers
+v0x7fc9b840b1f0_0 .net *"_s3", 1 0, L_0x7fc9b840bce0; 1 drivers
+v0x7fc9b840b280_0 .net *"_s5", 1 0, L_0x7fc9b840bd90; 1 drivers
+L_0x7fc9b840bd90 .arith/mult 2, L_0x7fc9b840bbd0, L_0x7fc9b840bce0;
+L_0x7fc9b840bea0 .arith/sum 2, L_0x7fc9b840c0b0, L_0x7fc9b840bd90;
+    .scope S_0x7fc9b8602a10;
+T_0 ;
+    %set/v v0x7fc9b840b770_0, 0, 4;
+    %end;
+    .thread T_0;
+    .scope S_0x7fc9b8602a10;
+T_1 ;
+    %wait E_0x7fc9b8601530;
+    %load/v 8, v0x7fc9b840b770_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v0x7fc9b840b770_0, 0, 8;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x7fc9b86012e0;
+T_2 ;
+    %delay 100000, 0;
+    %vpi_call 2 15 "$finish";
+    %end;
+    .thread T_2;
+    .scope S_0x7fc9b86012e0;
+T_3 ;
+    %set/v v0x7fc9b840ba90_0, 0, 1;
+    %end;
+    .thread T_3;
+    .scope S_0x7fc9b86012e0;
+T_4 ;
+    %delay 1000, 0;
+    %load/v 8, v0x7fc9b840ba90_0, 1;
+    %inv 8, 1;
+    %set/v v0x7fc9b840ba90_0, 8, 1;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_0x7fc9b86012e0;
+T_5 ;
+    %wait E_0x7fc9b8601530;
+    %vpi_call 2 36 "$display", "inps = ", v0x7fc9b840b930_0, " => outp = ", v0x7fc9b840b9d0_0;
+    %jmp T_5;
+    .thread T_5;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "inner_product_tb.v";
+    "inner_product_test.v";
+    "inner_product.v";
