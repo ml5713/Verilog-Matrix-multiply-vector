@@ -20,7 +20,7 @@ module inner_product_tb ();
 
 
 	// DUT
-	wire [`DATA_WIDTH-1 : 0] outp;
+	wire [7 : 0] outp;
 	wire [(`NUM_ELEMS * `DATA_WIDTH) - 1 : 0] inps;
 
 	inner_product_test #(
