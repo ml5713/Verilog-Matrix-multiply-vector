@@ -4,7 +4,7 @@ module inner_product_test
       data_width = 8)
   (
       input wire clk,
-      output wire [7 : 0] outp,
+      output wire [(2*data_width + $bits(num_elems)) - 1  : 0] outp,
       output wire [num_elems * data_width - 1 : 0] outp_inps
   );
 

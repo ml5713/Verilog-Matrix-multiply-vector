@@ -6,12 +6,12 @@ module inner_product
   (
       input wire[(DW * N) -1 : 0] inp1,
       input wire[(DW * N) -1 : 0] inp2,
-      output wire[7 : 0] outp
+      output wire[(2*DW + $bits(N)) - 1 : 0] outp
   );
 
   //locals
   genvar i;
-  wire [7: 0] sums[0 : N - 1]; // intermediate product sums
+  wire [(2*DW + $bits(N)) - 1 : 0] sums[0 : N - 1]; // intermediate product sums
 
   ///compute
   assign sums[0] = inp1[DW - 1 : 0] * inp2[DW - 1 : 0];

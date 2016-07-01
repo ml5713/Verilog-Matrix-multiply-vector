@@ -2,7 +2,7 @@
 
 `timescale 1ps/1ps
 `define DATA_WIDTH 2
-`define NUM_ELEMS  2
+`define NUM_ELEMS  5
 
 module inner_product_tb ();
 
@@ -20,7 +20,7 @@ module inner_product_tb ();
 
 
 	// DUT
-	wire [7 : 0] outp;
+	wire [(2*`DATA_WIDTH + $bits(`NUM_ELEMS)) - 1  : 0] outp;
 	wire [(`NUM_ELEMS * `DATA_WIDTH) - 1 : 0] inps;
 
 	inner_product_test #(
