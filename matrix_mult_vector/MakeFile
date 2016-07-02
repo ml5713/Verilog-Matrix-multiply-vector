@@ -32,3 +32,4 @@ clean:
 .PHONY : realclean
 realclean:
 	$(RM) matrix_mult_vector
+
