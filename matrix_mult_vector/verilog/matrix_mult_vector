@@ -1,0 +1,166 @@
+#! /usr/local/Cellar/icarus-verilog/0.9.7/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x7fee41e00fd0 .scope module, "matrix_mult_vector_tb" "matrix_mult_vector_tb" 2 8;
+ .timescale -12 -12;
+P_0x7fee41e01fb8 .param/l "TB_CLK_PERIOD" 2 13, +C4<011111010000>;
+P_0x7fee41e01fe0 .param/l "TB_RST_PERIOD" 2 14, +C4<0111110100000>;
+P_0x7fee41e02008 .param/l "TB_TIMEOUT" 2 12, +C4<011000011010100000>;
+v0x7fee41e14540_0 .net "inps", 3 0, L_0x7fee41e14720; 1 drivers
+v0x7fee41e145c0_0 .net "outp", 13 0, L_0x7fee41e15ee0; 1 drivers
+v0x7fee41e14680_0 .var "tb_clk", 0 0;
+S_0x7fee41e020e0 .scope module, "my_matrix_mult_vector_test" "matrix_mult_vector_test" 2 31, 3 1, S_0x7fee41e00fd0;
+ .timescale 0 0;
+P_0x7fee41e02268 .param/l "data_width" 3 5, +C4<010>;
+P_0x7fee41e02290 .param/l "m_rows" 3 3, +C4<010>;
+P_0x7fee41e022b8 .param/l "n_columns" 3 4, +C4<010>;
+P_0x7fee41e022e0 .param/l "num_bits" 3 13, +C4<0100>;
+L_0x7fee41e14720 .functor BUFZ 4, v0x7fee41e142d0_0, C4<0000>, C4<0000>, C4<0000>;
+v0x7fee41e14250_0 .net "clk", 0 0, v0x7fee41e14680_0; 1 drivers
+v0x7fee41e142d0_0 .var "count", 3 0;
+v0x7fee41e14350_0 .var "multiple_counts", 7 0;
+v0x7fee41e143f0_0 .alias "outp", 13 0, v0x7fee41e145c0_0;
+v0x7fee41e14490_0 .alias "outp_inps", 3 0, v0x7fee41e14540_0;
+E_0x7fee41e02410 .event posedge, v0x7fee41e14250_0;
+S_0x7fee41e02440 .scope module, "my_matrix_mult_vector" "matrix_mult_vector" 3 34, 4 1, S_0x7fee41e020e0;
+ .timescale 0 0;
+P_0x7fee41e02528 .param/l "DW" 4 5, +C4<010>;
+P_0x7fee41e02550 .param/l "M" 4 3, +C4<010>;
+P_0x7fee41e02578 .param/l "N" 4 4, +C4<010>;
+RS_0x103a1a518 .resolv tri, L_0x7fee41e152b0, L_0x7fee41e15dd0, C4<zzzzzzzzzzzzzz>, C4<zzzzzzzzzzzzzz>;
+L_0x7fee41e15ee0 .functor BUFZ 14, RS_0x103a1a518, C4<00000000000000>, C4<00000000000000>, C4<00000000000000>;
+v0x7fee41e13fc0_0 .net8 "dot_products", 13 0, RS_0x103a1a518; 2 drivers
+v0x7fee41e14060_0 .net "matrix_inp", 7 0, v0x7fee41e14350_0; 1 drivers
+v0x7fee41e140f0_0 .alias "outp", 13 0, v0x7fee41e145c0_0;
+v0x7fee41e14190_0 .net "vector_inp", 3 0, v0x7fee41e142d0_0; 1 drivers
+L_0x7fee41e151e0 .part v0x7fee41e14350_0, 0, 4;
+L_0x7fee41e152b0 .part/pv L_0x7fee41e15140, 0, 7, 14;
+L_0x7fee41e15d40 .part v0x7fee41e14350_0, 4, 4;
+L_0x7fee41e15dd0 .part/pv L_0x7fee41e15ca0, 7, 7, 14;
+S_0x7fee41e13340 .scope generate, "product_loop[0]" "product_loop[0]" 4 20, 4 20, S_0x7fee41e02440;
+ .timescale 0 0;
+P_0x7fee41e13118 .param/l "i" 4 20, +C4<00>;
+S_0x7fee41e13480 .scope module, "my_inner_product" "inner_product" 4 26, 5 1, S_0x7fee41e13340;
+ .timescale -12 -12;
+P_0x7fee41e13568 .param/l "DW" 5 4, +C4<010>;
+P_0x7fee41e13590 .param/l "N" 5 3, +C4<010>;
+L_0x7fee41e15140 .functor BUFZ 7, L_0x7fee41e14c00, C4<0000000>, C4<0000000>, C4<0000000>;
+v0x7fee41e13ad0_0 .net *"_s10", 1 0, L_0x7fee41e14f30; 1 drivers
+v0x7fee41e13b70_0 .net *"_s4", 1 0, L_0x7fee41e14cf0; 1 drivers
+v0x7fee41e13c00_0 .net *"_s5", 4 0, L_0x7fee41e14dc0; 1 drivers
+v0x7fee41e13c80_0 .net *"_s8", 2 0, C4<000>; 1 drivers
+v0x7fee41e13d10_0 .net "inp1", 3 0, L_0x7fee41e151e0; 1 drivers
+v0x7fee41e13dd0_0 .alias "inp2", 3 0, v0x7fee41e14190_0;
+v0x7fee41e13e50_0 .net "outp", 6 0, L_0x7fee41e15140; 1 drivers
+v0x7fee41e13f10 .array "sums", 1 0;
+v0x7fee41e13f10_0 .net v0x7fee41e13f10 0, 6 0, L_0x7fee41e14ff0; 1 drivers
+v0x7fee41e13f10_1 .net v0x7fee41e13f10 1, 6 0, L_0x7fee41e14c00; 1 drivers
+L_0x7fee41e14840 .part L_0x7fee41e151e0, 2, 2;
+L_0x7fee41e14a40 .part v0x7fee41e142d0_0, 2, 2;
+L_0x7fee41e14cf0 .part L_0x7fee41e151e0, 0, 2;
+L_0x7fee41e14dc0 .concat [ 2 3 0 0], L_0x7fee41e14cf0, C4<000>;
+L_0x7fee41e14f30 .part v0x7fee41e142d0_0, 0, 2;
+L_0x7fee41e14ff0 .arith/mult 7, L_0x7fee41e14dc0, L_0x7fee41e14f30;
+S_0x7fee41e13660 .scope generate, "sum_loop[1]" "sum_loop[1]" 5 20, 5 20, S_0x7fee41e13480;
+ .timescale -12 -12;
+P_0x7fee41e13748 .param/l "i" 5 20, +C4<01>;
+v0x7fee41e137c0_0 .net *"_s2", 1 0, L_0x7fee41e14840; 1 drivers
+v0x7fee41e13850_0 .net *"_s3", 4 0, L_0x7fee41e148d0; 1 drivers
+v0x7fee41e138e0_0 .net *"_s6", 2 0, C4<000>; 1 drivers
+v0x7fee41e13980_0 .net *"_s7", 1 0, L_0x7fee41e14a40; 1 drivers
+v0x7fee41e13a10_0 .net *"_s9", 6 0, L_0x7fee41e14ad0; 1 drivers
+L_0x7fee41e148d0 .concat [ 2 3 0 0], L_0x7fee41e14840, C4<000>;
+L_0x7fee41e14ad0 .arith/mult 7, L_0x7fee41e148d0, L_0x7fee41e14a40;
+L_0x7fee41e14c00 .arith/sum 7, L_0x7fee41e14ff0, L_0x7fee41e14ad0;
+S_0x7fee41e026a0 .scope generate, "product_loop[1]" "product_loop[1]" 4 20, 4 20, S_0x7fee41e02440;
+ .timescale 0 0;
+P_0x7fee41e02788 .param/l "i" 4 20, +C4<01>;
+S_0x7fee41e02800 .scope module, "my_inner_product" "inner_product" 4 26, 5 1, S_0x7fee41e026a0;
+ .timescale -12 -12;
+P_0x7fee41e028e8 .param/l "DW" 5 4, +C4<010>;
+P_0x7fee41e02910 .param/l "N" 5 3, +C4<010>;
+L_0x7fee41e15ca0 .functor BUFZ 7, L_0x7fee41e15700, C4<0000000>, C4<0000000>, C4<0000000>;
+v0x7fee41e12e50_0 .net *"_s10", 1 0, L_0x7fee41e15a10; 1 drivers
+v0x7fee41e12ef0_0 .net *"_s4", 1 0, L_0x7fee41e157f0; 1 drivers
+v0x7fee41e12f80_0 .net *"_s5", 4 0, L_0x7fee41e158c0; 1 drivers
+v0x7fee41e13000_0 .net *"_s8", 2 0, C4<000>; 1 drivers
+v0x7fee41e13090_0 .net "inp1", 3 0, L_0x7fee41e15d40; 1 drivers
+v0x7fee41e13150_0 .alias "inp2", 3 0, v0x7fee41e14190_0;
+v0x7fee41e131e0_0 .net "outp", 6 0, L_0x7fee41e15ca0; 1 drivers
+v0x7fee41e132a0 .array "sums", 1 0;
+v0x7fee41e132a0_0 .net v0x7fee41e132a0 0, 6 0, L_0x7fee41e15bd0; 1 drivers
+v0x7fee41e132a0_1 .net v0x7fee41e132a0 1, 6 0, L_0x7fee41e15700; 1 drivers
+L_0x7fee41e15380 .part L_0x7fee41e15d40, 2, 2;
+L_0x7fee41e15560 .part v0x7fee41e142d0_0, 2, 2;
+L_0x7fee41e157f0 .part L_0x7fee41e15d40, 0, 2;
+L_0x7fee41e158c0 .concat [ 2 3 0 0], L_0x7fee41e157f0, C4<000>;
+L_0x7fee41e15a10 .part v0x7fee41e142d0_0, 0, 2;
+L_0x7fee41e15bd0 .arith/mult 7, L_0x7fee41e158c0, L_0x7fee41e15a10;
+S_0x7fee41e029e0 .scope generate, "sum_loop[1]" "sum_loop[1]" 5 20, 5 20, S_0x7fee41e02800;
+ .timescale -12 -12;
+P_0x7fee41e02ac8 .param/l "i" 5 20, +C4<01>;
+v0x7fee41e02b40_0 .net *"_s2", 1 0, L_0x7fee41e15380; 1 drivers
+v0x7fee41e12bd0_0 .net *"_s3", 4 0, L_0x7fee41e15410; 1 drivers
+v0x7fee41e12c60_0 .net *"_s6", 2 0, C4<000>; 1 drivers
+v0x7fee41e12d00_0 .net *"_s7", 1 0, L_0x7fee41e15560; 1 drivers
+v0x7fee41e12d90_0 .net *"_s9", 6 0, L_0x7fee41e155f0; 1 drivers
+L_0x7fee41e15410 .concat [ 2 3 0 0], L_0x7fee41e15380, C4<000>;
+L_0x7fee41e155f0 .arith/mult 7, L_0x7fee41e15410, L_0x7fee41e15560;
+L_0x7fee41e15700 .arith/sum 7, L_0x7fee41e15bd0, L_0x7fee41e155f0;
+    .scope S_0x7fee41e020e0;
+T_0 ;
+    %set/v v0x7fee41e142d0_0, 0, 4;
+    %set/v v0x7fee41e14350_0, 0, 8;
+    %end;
+    .thread T_0;
+    .scope S_0x7fee41e020e0;
+T_1 ;
+    %wait E_0x7fee41e02410;
+    %load/v 8, v0x7fee41e142d0_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v0x7fee41e142d0_0, 0, 8;
+    %load/v 8, v0x7fee41e14350_0, 8;
+    %mov 16, 0, 24;
+    %addi 8, 1, 32;
+    %ix/load 0, 8, 0;
+    %assign/v0 v0x7fee41e14350_0, 0, 8;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x7fee41e00fd0;
+T_2 ;
+    %delay 100000, 0;
+    %vpi_call 2 16 "$finish";
+    %end;
+    .thread T_2;
+    .scope S_0x7fee41e00fd0;
+T_3 ;
+    %set/v v0x7fee41e14680_0, 0, 1;
+    %end;
+    .thread T_3;
+    .scope S_0x7fee41e00fd0;
+T_4 ;
+    %delay 1000, 0;
+    %load/v 8, v0x7fee41e14680_0, 1;
+    %inv 8, 1;
+    %set/v v0x7fee41e14680_0, 8, 1;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_0x7fee41e00fd0;
+T_5 ;
+    %wait E_0x7fee41e02410;
+    %vpi_call 2 38 "$display", "inps = ", v0x7fee41e14540_0, " => outp = ", v0x7fee41e145c0_0;
+    %jmp T_5;
+    .thread T_5;
+# The file index is used to find the file name in the following table.
+:file_names 6;
+    "N/A";
+    "<interactive>";
+    "matrix_mult_vector_tb.v";
+    "matrix_mult_vector_test.v";
+    "matrix_mult_vector.v";
+    "inner_product.v";
